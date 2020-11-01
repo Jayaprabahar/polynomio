@@ -1,2 +1,2 @@
 # polynomio
-Solving polynomios, in this case i chose pentomino
+Solving polynomios, in this case I chose pentomino
