@@ -1,4 +1,4 @@
-package com.jayaprabahar.algorithms.polynomio.model.pentomino;
+package com.jayaprabahar.algorithms.polynomio.feeder.pentomino;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.jayaprabahar.algorithms.polynomio.model.Coordinates;
 import com.jayaprabahar.algorithms.polynomio.model.CoordinatesSet;
 import com.jayaprabahar.algorithms.polynomio.model.Polynomio;
+import com.jayaprabahar.algorithms.polynomio.model.pentomino.PentominoBaseModel;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -76,6 +77,12 @@ class PentominoModelFeeder {
 			}
 		});
 		return newCoordinates;
+	}
+	
+	public static void main(String[] args) {
+		
+		PentominoModelFeeder feeder = new PentominoModelFeeder(6, 10);
+		System.out.println(feeder.getPolynomioList());
 	}
 
 }

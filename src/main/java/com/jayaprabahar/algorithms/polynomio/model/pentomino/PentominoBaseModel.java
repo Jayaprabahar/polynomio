@@ -24,20 +24,20 @@ import lombok.experimental.NonFinal;
  */
 @Value
 @NoArgsConstructor
-class PentominoBaseModel {
+public class PentominoBaseModel {
 
-	Polynomio pentominoF = new Polynomio("F", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 1, 0, 2, 1, 0, 1, 1, 2, 1))));
+	Polynomio pentominoF = new Polynomio("F", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 1, 1, 1, 1, 2, 2, 2, 1, 0))));
 	Polynomio pentominoI = new Polynomio("I", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 1, 0, 2, 0, 3, 0, 4, 0))));
 	Polynomio pentominoL = new Polynomio("L", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 1, 0, 2, 0, 3, 0, 3, 1))));
-	Polynomio pentominoN = new Polynomio("N", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 1, 1, 1, 2, 1, 2, 0, 3, 0))));
-	Polynomio pentominoP = new Polynomio("P", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 0, 1, 1, 0, 1, 1, 2, 0))));
-	Polynomio pentominoT = new Polynomio("T", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 0, 1, 0, 2, 1, 1, 2, 1))));
-	Polynomio pentominoU = new Polynomio("U", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 1, 0, 1, 1, 1, 2, 0, 2))));
-	Polynomio pentominoV = new Polynomio("V", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 1, 0, 2, 0, 2, 1, 2, 2))));
-	Polynomio pentominoW = new Polynomio("W", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 1, 0, 1, 1, 2, 1, 2, 2))));
-	Polynomio pentominoX = new Polynomio("X", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 1, 1, 0, 1, 1, 1, 2, 2, 1))));
-	Polynomio pentominoY = new Polynomio("Y", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 1, 0, 2, 0, 3, 0, 4, 1, 0))));
-	Polynomio pentominoZ = new Polynomio("Z", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 0, 1, 1, 1, 2, 1, 2, 2))));
+	Polynomio pentominoN = new Polynomio("N", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 0, 1, 1, 1, 1, 2, 1, 3))));
+	Polynomio pentominoP = new Polynomio("P", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 0, 1, 0, 2, 1, 1, 1, 2))));
+	Polynomio pentominoT = new Polynomio("T", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(1, 0, 1, 1, 0, 2, 1, 2, 2, 2))));
+	Polynomio pentominoU = new Polynomio("U", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 0, 1, 0, 2, 0, 0, 1, 2, 1))));
+	Polynomio pentominoV = new Polynomio("V", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 2, 0, 1, 0, 0, 1, 0, 2, 0))));
+	Polynomio pentominoW = new Polynomio("W", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 2, 0, 1, 1, 1, 1, 0, 2, 0))));
+	Polynomio pentominoX = new Polynomio("X", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 1, 1, 1, 2, 1, 1, 0, 1, 2))));
+	Polynomio pentominoY = new Polynomio("Y", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(1, 0, 1, 1, 1, 2, 1, 3, 0, 2))));
+	Polynomio pentominoZ = new Polynomio("Z", List.of(new CoordinatesSet(CoordinatesGenerator.generatePentominoCoordinates(0, 2, 1, 2, 1, 1, 1, 0, 2, 0))));
 
 	@NonFinal
 	List<Polynomio> pentomios = List.of(pentominoF, pentominoI, pentominoL, pentominoN, pentominoP, pentominoT, pentominoU, pentominoV, pentominoW, pentominoX, pentominoY, pentominoZ);
