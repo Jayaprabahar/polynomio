@@ -3,9 +3,13 @@
  */
 package com.jayaprabahar.algorithms.polynomio.generator;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.jayaprabahar.algorithms.polynomio.model.Coordinates;
+
+import lombok.AllArgsConstructor;
 
 /**
  * <p> Project : polynomio </p>
@@ -19,14 +23,26 @@ import com.jayaprabahar.algorithms.polynomio.model.Coordinates;
  * @author <a href="mailto:jpofficial@gmail.com">Jayaprabahar</a>
  *
  */
-public final class CoordinatesGenerator {
+@AllArgsConstructor
+public class CoordinatesGenerator {
 
-	/**
-	 * @return 
-	 * 
-	 */
-	public static List<Coordinates> generatePentominoCoordinates(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int x5, int y5) {
-		return List.of(new Coordinates(x1, y1), new Coordinates(x2, y2), new Coordinates(x3, y3), new Coordinates(x4, y4), new Coordinates(x5, y5));
+	public int polynomioSize;
+
+	public List<Coordinates> generateCoordinates(int... xyAxis) {
+		if (!isValidCoordinates(xyAxis)) {
+			return Collections.emptyList();
+		}
+
+		List<Coordinates> listOfCoordinates = new ArrayList<>();
+
+		for (int i = 0; i < xyAxis.length; i++, i++) {
+			listOfCoordinates.add(new Coordinates(xyAxis[i], xyAxis[i + 1]));
+		}
+		return listOfCoordinates;
+	}
+
+	public boolean isValidCoordinates(int... xyAxis) {
+		return polynomioSize * 2 == xyAxis.length;
 	}
 
 }

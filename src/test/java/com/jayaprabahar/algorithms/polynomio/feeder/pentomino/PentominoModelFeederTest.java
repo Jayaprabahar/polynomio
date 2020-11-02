@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import com.jayaprabahar.algorithms.polynomio.model.CoordinatesSet;
+import com.jayaprabahar.algorithms.polynomio.model.Polynomio;
 
 /**
  * <p> Project : polynomio </p>
@@ -32,22 +33,22 @@ class PentominoModelFeederTest {
 		assertEquals(12, feeder.getPolynomioList().size());
 
 		// Tests there is no duplicates
-		List<CoordinatesSet> totalCoordinates = feeder.getPolynomioList().stream().map(e -> e.getCoordinatesSets()).flatMap(List::stream).collect(Collectors.toList());
+		List<CoordinatesSet> totalCoordinates = feeder.getPolynomioList().stream().map(Polynomio::getCoordinatesSets).flatMap(List::stream).collect(Collectors.toList());
 		assertEquals(totalCoordinates.size(), totalCoordinates.stream().distinct().count());
 
 		assertEquals(385, totalCoordinates.size());
-		assertEquals(32, feeder.getPentominoCoordinates("F").size());
-		assertEquals(20, feeder.getPentominoCoordinates("I").size());
-		assertEquals(27, feeder.getPentominoCoordinates("L").size());
-		assertEquals(35, feeder.getPentominoCoordinates("N").size());
-		assertEquals(40, feeder.getPentominoCoordinates("P").size());
-		assertEquals(32, feeder.getPentominoCoordinates("T").size());
-		assertEquals(36, feeder.getPentominoCoordinates("U").size());
-		assertEquals(32, feeder.getPentominoCoordinates("V").size());
-		assertEquals(32, feeder.getPentominoCoordinates("W").size());
-		assertEquals(32, feeder.getPentominoCoordinates("X").size());
-		assertEquals(35, feeder.getPentominoCoordinates("Y").size());
-		assertEquals(32, feeder.getPentominoCoordinates("Z").size());
+		assertEquals(32, feeder.getCoordinatesForPolynomioLetter("F").size());
+		assertEquals(20, feeder.getCoordinatesForPolynomioLetter("I").size());
+		assertEquals(27, feeder.getCoordinatesForPolynomioLetter("L").size());
+		assertEquals(35, feeder.getCoordinatesForPolynomioLetter("N").size());
+		assertEquals(40, feeder.getCoordinatesForPolynomioLetter("P").size());
+		assertEquals(32, feeder.getCoordinatesForPolynomioLetter("T").size());
+		assertEquals(36, feeder.getCoordinatesForPolynomioLetter("U").size());
+		assertEquals(32, feeder.getCoordinatesForPolynomioLetter("V").size());
+		assertEquals(32, feeder.getCoordinatesForPolynomioLetter("W").size());
+		assertEquals(32, feeder.getCoordinatesForPolynomioLetter("X").size());
+		assertEquals(35, feeder.getCoordinatesForPolynomioLetter("Y").size());
+		assertEquals(32, feeder.getCoordinatesForPolynomioLetter("Z").size());
 
 	}
 

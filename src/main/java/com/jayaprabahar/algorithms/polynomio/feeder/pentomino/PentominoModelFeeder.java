@@ -13,6 +13,7 @@ import com.jayaprabahar.algorithms.polynomio.model.CoordinatesSet;
 import com.jayaprabahar.algorithms.polynomio.model.Polynomio;
 import com.jayaprabahar.algorithms.polynomio.model.pentomino.PentominoBaseModel;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -32,13 +33,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-class PentominoModelFeeder {
+public class PentominoModelFeeder {
 
 	List<Polynomio> polynomioList;
 	int width;
 	int height;
 
-	Predicate<? super Coordinates> inTheBoxPredicate = e -> e.getXAxis() >= 0 && e.getXAxis() < width && e.getYAxis() >= 0 && e.getYAxis() < height;
+	@Getter(value = AccessLevel.NONE)
+	private Predicate<? super Coordinates> inTheBoxPredicate = e -> e.getXAxis() >= 0 && e.getXAxis() < width && e.getYAxis() >= 0 && e.getYAxis() < height;
 
 	/**
 	 * 
@@ -55,7 +57,6 @@ class PentominoModelFeeder {
 	 * 
 	 */
 	private void generateAllPentominoCombinations() {
-
 		polynomioList.stream().forEach(polynomio -> {
 			List<CoordinatesSet> newCoordinates = new ArrayList<>();
 
@@ -86,8 +87,32 @@ class PentominoModelFeeder {
 	 * @return 
 	 * 
 	 */
-	public List<CoordinatesSet> getPentominoCoordinates(String polynomioLetter) {
+	public List<CoordinatesSet> getCoordinatesSetForPolynomioLetter(String polynomioLetter) {
 		return polynomioList.stream().filter(e -> StringUtils.equalsIgnoreCase(polynomioLetter, e.getPolynomioLetter())).findFirst().orElse(new Polynomio()).getCoordinatesSets();
 	}
 
+	/**
+	 * @return 
+	 * 
+	 */
+	public List<CoordinatesSet> getCoordinates() {
+		return polynomioList.stream().map(Polynomio::getCoordinatesSets).flatMap(List::stream).collect(Collectors.toList());
+	}
+
+	/**
+	 * @return 
+	 * 
+	 */
+	public List<Coordinates> getCoordinatesForPolynomioLetter(String polynomioLetter) {
+		return getCoordinatesSetForPolynomioLetter(polynomioLetter).stream().map(CoordinatesSet::getCoordinateSet).flatMap(List::stream).collect(Collectors.toList());
+	}
+
+	/**
+	 * @return 
+	 * 
+	 */
+	public int getCoordinatesCount() {
+		return (int) polynomioList.stream().map(Polynomio::getCoordinatesSets).flatMap(List::stream).count();
+	}
+	
 }

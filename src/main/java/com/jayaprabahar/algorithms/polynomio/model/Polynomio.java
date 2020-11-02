@@ -1,6 +1,7 @@
 package com.jayaprabahar.algorithms.polynomio.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,4 +28,12 @@ public class Polynomio {
 
 	private String polynomioLetter;
 	private List<CoordinatesSet> coordinatesSets;
+
+	/**
+	 * @return 
+	 * 
+	 */
+	public List<Coordinates> getAllCoordinates() {
+		return this.coordinatesSets.stream().map(CoordinatesSet::getCoordinateSet).flatMap(List::stream).collect(Collectors.toList());
+	}
 }

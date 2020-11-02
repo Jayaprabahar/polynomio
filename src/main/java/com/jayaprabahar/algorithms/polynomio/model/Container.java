@@ -21,9 +21,29 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Container {
-	
-	private int width = 6;
-	private int height = 10;
-	private int[][] containerMatrix = new int[width][height];
+
+	private int width;
+	private int height;
+	private int polynomioAlphabetCount;
+	private int[][] containerPlacements;
+
+	/**
+	 * 
+	 */
+	public Container(int width, int height, int polynomioAlphabetCount, int totalCoordinatesCount) {
+		this.width = width;
+		this.height = height;
+		this.polynomioAlphabetCount = polynomioAlphabetCount;
+		this.containerPlacements = new int[totalCoordinatesCount][width * height + polynomioAlphabetCount];
+
+	}
+
+	/**
+	 * @return 
+	 * 
+	 */
+	public int getPositionBasedOnCoordinates(Coordinates coordinates) {
+		return polynomioAlphabetCount + (width * coordinates.getYAxis()) + coordinates.getXAxis();
+	}
 
 }
