@@ -4,6 +4,7 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -20,13 +21,10 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString(includeFieldNames = false)
 public class Polynomio {
 
 	private String polynomioLetter;
 	private List<CoordinatesSet> coordinatesSets;
-	
-	// Future design
-	// private boolean swappable;
-	// private boolean rotatable;
 }

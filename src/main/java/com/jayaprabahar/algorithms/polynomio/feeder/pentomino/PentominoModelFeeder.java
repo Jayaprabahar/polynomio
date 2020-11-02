@@ -6,6 +6,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.jayaprabahar.algorithms.polynomio.model.Coordinates;
 import com.jayaprabahar.algorithms.polynomio.model.CoordinatesSet;
 import com.jayaprabahar.algorithms.polynomio.model.Polynomio;
@@ -44,7 +46,8 @@ class PentominoModelFeeder {
 	public PentominoModelFeeder(int width, int height) {
 		this.width = width;
 		this.height = height;
-		polynomioList = new PentominoBaseModel().getPentomios();
+		this.polynomioList = PentominoBaseModel.getPentominoBaseModels();
+
 		generateAllPentominoCombinations();
 	}
 
@@ -78,11 +81,13 @@ class PentominoModelFeeder {
 		});
 		return newCoordinates;
 	}
-	
-	public static void main(String[] args) {
-		
-		PentominoModelFeeder feeder = new PentominoModelFeeder(6, 10);
-		System.out.println(feeder.getPolynomioList());
+
+	/**
+	 * @return 
+	 * 
+	 */
+	public List<CoordinatesSet> getPentominoCoordinates(String polynomioLetter) {
+		return polynomioList.stream().filter(e -> StringUtils.equalsIgnoreCase(polynomioLetter, e.getPolynomioLetter())).findFirst().orElse(new Polynomio()).getCoordinatesSets();
 	}
 
 }
