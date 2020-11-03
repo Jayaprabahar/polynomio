@@ -1,6 +1,13 @@
 # polynomio
 Solving polynomios, in this case I chose pentomino
 
+It is implemented as a REST API with differnet URL for each algorithm.
+
+Expected algorithms
+1) Fast Placement Algorithm. A simple algorithm that tries to iteratively fill the sparse matrix entries in sequential way
+2) DLX Algorithm
+3) Backtrack Algorithm
+
 Run the Springboot application (main class "PolynomioApplication.java")
 
 The solution is running as an API.
@@ -13,31 +20,31 @@ Just hit the URL with the following value
 
 You'll see the output in this format. (If you are using browser, then the output is wrapped. In that case, Click on view page source, to see in the expected format)
 
- F   T 
-F F   T 
- F F T T T
-I I I I I Y
-L L L L  Y
-N  P L Y Y
-N N P P  Y
- N P P  
- N U U U 
-  U  U 
+ 	F   T 
+	F F   T 
+ 	F F T T T
+	I I I I I Y
+	L L L L  Y
+	N  P L Y Y
+	N N P P  Y
+ 	N P P  
+ 	N U U U 
+  	U  U 
 
-------------
+	------------
+	
+	I I I I I 
+ 	F   T 
+	F F   T 
+ 	F F T T T
+	L L L L  Y
+	N  P L  Y
+	N N P P Y Y
+ 	N P P  Y
+ 	N U U U 
+  	U  U 
 
-I I I I I 
- F   T 
-F F   T 
- F F T T T
-L L L L  Y
-N  P L  Y
-N N P P Y Y
- N P P  Y
- N U U U 
-  U  U 
-
-------------
+	------------
 
  Query parameter:-
 
