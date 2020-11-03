@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jayaprabahar.algorithms.polynomio.feeder.pentomino;
+package com.jayaprabahar.algorithms.polynomio.feeder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,8 +15,8 @@ import com.jayaprabahar.algorithms.polynomio.model.Polynomio;
 
 /**
  * <p> Project : polynomio </p>
- * <p> Title : PentominoModelFeederTest.java </p>
- * <p> Package : com.jayaprabahar.algorithms.polynomio.feeder.pentomino </p>
+ * <p> Title : PolynomioModelFeederTest.java </p>
+ * <p> Package : com.jayaprabahar.algorithms.polynomio.feeder </p>
  * <p> Description: TODO </p>
  * <p> Created: Nov 2, 2020 </p>
  * 
@@ -25,11 +25,11 @@ import com.jayaprabahar.algorithms.polynomio.model.Polynomio;
  * @author <a href="mailto:jpofficial@gmail.com">Jayaprabahar</a>
  *
  */
-class PentominoModelFeederTest {
+class PolynomioModelFeederTest {
 
 	@Test
 	void testPentominoModelFeeder() {
-		PentominoModelFeeder feeder = new PentominoModelFeeder(6, 10);
+		PolynomioModelFeeder feeder = new PolynomioModelFeeder(6, 10);
 		assertEquals(12, feeder.getPolynomioList().size());
 
 		// Tests there is no duplicates

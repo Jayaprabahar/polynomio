@@ -10,7 +10,7 @@ import lombok.Setter;
  * <p> Project : polynomio </p>
  * <p> Package : com.jayaprabahar.algorithms.polynomio.model </p>
  * <p> Title : Container.java </p>
- * <p> Description: TODO </p>
+ * <p> Description: This class represents a container or board or a box where polynomios has to be filled. Represented in a integer matrices with 0s and 1s. Mostly this matrix is a sparse matrix </p>
  * <p> Created: Nov 1, 2020 </p>
  * 
  * @since 1.0.0
@@ -35,7 +35,11 @@ public class Container {
 		this.height = height;
 		this.polynomioAlphabetCount = polynomioAlphabetCount;
 		this.containerPlacements = new int[totalCoordinatesCount][width * height + polynomioAlphabetCount];
+	}
 
+	public Container(int width, int height) {
+		this.width = width;
+		this.height = height;
 	}
 
 	/**
@@ -44,6 +48,14 @@ public class Container {
 	 */
 	public int getPositionBasedOnCoordinates(Coordinates coordinates) {
 		return polynomioAlphabetCount + (width * coordinates.getYAxis()) + coordinates.getXAxis();
+	}
+
+	/**
+	 * @return 
+	 * 
+	 */
+	public Coordinates getCoordinatesBasedOnPosition(int position) {
+		return new Coordinates(position % width, position / width);
 	}
 
 }

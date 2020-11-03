@@ -9,7 +9,7 @@ import com.jayaprabahar.algorithms.polynomio.generator.CoordinatesGenerator;
  * <p> Project : polynomio </p>
  * <p> Package : com.jayaprabahar.algorithms.polynomio.generator </p>
  * <p> Title : CoordinatesGenerator.java </p>
- * <p> Description: TODO </p>
+ * <p> Description: Coordinates Generator for Pentominos</p>
  * <p> Created: Nov 1, 2020 </p>
  * 
  * @since 1.0.0

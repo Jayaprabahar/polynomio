@@ -1,4 +1,4 @@
-package com.jayaprabahar.algorithms.polynomio.feeder.pentomino;
+package com.jayaprabahar.algorithms.polynomio.feeder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,8 @@ import lombok.ToString;
 /**
  * <p> Project : polynomio </p>
  * <p> Package : com.jayaprabahar.algorithms.polynomio.generator </p>
- * <p> Title : PentominoModelFeeder.java </p>
- * <p> Description: TODO </p>
+ * <p> Title : PolynomioModelFeeder.java </p>
+ * <p> Description: Feeder class which can feed PolynomioModels based on width and height</p>
  * <p> Created: Nov 1, 2020 </p>
  * 
  * @since 1.0.0
@@ -33,7 +33,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PentominoModelFeeder {
+public class PolynomioModelFeeder {
 
 	List<Polynomio> polynomioList;
 	int width;
@@ -45,18 +45,18 @@ public class PentominoModelFeeder {
 	/**
 	 * 
 	 */
-	public PentominoModelFeeder(int width, int height) {
+	public PolynomioModelFeeder(int width, int height) {
 		this.width = width;
 		this.height = height;
-		this.polynomioList = PentominoBaseModel.getPentominoBaseModels();
+		this.polynomioList = new PentominoBaseModel().getPentominoBaseModels();
 
-		generateAllPentominoCombinations();
+		generateAllPolynomioCombinations();
 	}
 
 	/**
 	 * 
 	 */
-	private void generateAllPentominoCombinations() {
+	private void generateAllPolynomioCombinations() {
 		polynomioList.stream().forEach(polynomio -> {
 			List<CoordinatesSet> newCoordinates = new ArrayList<>();
 
@@ -114,5 +114,5 @@ public class PentominoModelFeeder {
 	public int getCoordinatesCount() {
 		return (int) polynomioList.stream().map(Polynomio::getCoordinatesSets).flatMap(List::stream).count();
 	}
-	
+
 }

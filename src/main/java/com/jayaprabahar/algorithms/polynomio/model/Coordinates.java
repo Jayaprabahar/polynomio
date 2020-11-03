@@ -7,7 +7,7 @@ import lombok.Data;
  * <p> Project : polynomio </p>
  * <p> Package : com.jayaprabahar.algorithms.polynomio.model </p>
  * <p> Title : Container.java </p>
- * <p> Description: TODO </p>
+ * <p> Description: Representation of Coordinates, holds x and y axis </p>
  * <p> Created: Nov 1, 2020 </p>
  * 
  * @since 1.0.0

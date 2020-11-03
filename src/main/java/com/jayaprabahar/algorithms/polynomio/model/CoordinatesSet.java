@@ -13,7 +13,7 @@ import lombok.ToString;
  * <p> Project : polynomio </p>
  * <p> Package : com.jayaprabahar.algorithms.polynomio.model </p>
  * <p> Title : CoordinatesSet.java </p>
- * <p> Description: TODO </p>
+ * <p> Description: Representation of set of Coordinates, especially for single polynomio </p>
  * <p> Created: Nov 1, 2020 </p>
  * 
  * @since 1.0.0

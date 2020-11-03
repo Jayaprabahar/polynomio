@@ -6,13 +6,12 @@ import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * <p> Project : polynomio </p>
  * <p> Package : com.jayaprabahar.algorithms.polynomio.model </p>
  * <p> Title : Polynomio.java </p>
- * <p> Description: TODO </p>
+ * <p> Description: A value object representation of Polynomio </p>
  * <p> Created: Nov 1, 2020 </p>
  * 
  * @since 1.0.0
@@ -23,7 +22,6 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(includeFieldNames = false)
 public class Polynomio {
 
 	private String polynomioLetter;

@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
  * <p> Project : polynomio </p>
  * <p> Package : com.jayaprabahar.algorithms.polynomio.generator </p>
  * <p> Title : CoordinatesGenerator.java </p>
- * <p> Description: TODO </p>
+ * <p> Description: Coordinates Generator. It is a unique implementation, so it has to be extended by different polynomios such as pentomio</p>
  * <p> Created: Nov 1, 2020 </p>
  * 
  * @since 1.0.0
@@ -41,6 +41,12 @@ public class CoordinatesGenerator {
 		return listOfCoordinates;
 	}
 
+	/**
+	 * Checks whether the passed x,y axis values will form the single set of coordinates for polynomio
+	 * 
+	 * @param xyAxis
+	 * @return true/false
+	 */
 	public boolean isValidCoordinates(int... xyAxis) {
 		return polynomioSize * 2 == xyAxis.length;
 	}

@@ -1,10 +1,10 @@
-package com.jayaprabahar.algorithms.pentomino;
+package com.jayaprabahar.algorithms.polynomio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PentominoApplicationTests {
+class PolynomioApplicationTests {
 
 	@Test
 	void contextLoads() {
