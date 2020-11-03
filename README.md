@@ -43,7 +43,7 @@ N N P P Y Y
 
 	boxWidth		| Number	|	Mandatory
 	boxHeight		| Number	|	Mandatory
-	showRandom	| Boolean	|	Optional (Default value=false)
+	showRandom		| Boolean	|	Optional (Default value=false)
 	showAllCombinations	| Boolean	|	Optional (Default value=false)
 
  * http://localhost:8080/polynomios/fastPlacementAlgorithm?boxWidth=6&boxHeight=10&showRandom=true
