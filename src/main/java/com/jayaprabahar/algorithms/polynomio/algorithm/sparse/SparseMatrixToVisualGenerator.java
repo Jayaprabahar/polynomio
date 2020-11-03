@@ -5,11 +5,13 @@ package com.jayaprabahar.algorithms.polynomio.algorithm.sparse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -32,12 +34,37 @@ import com.jayaprabahar.algorithms.polynomio.model.pentomino.PentominoBaseModel;
 public class SparseMatrixToVisualGenerator {
 
 	/**
-	 * @param showAllCombinations 
+	 * @param randomOutput 
 	 * @return 
 	 * 
 	 */
-	public String getVisualMatrix(List<List<Integer>> sparsePosition, int width, int height, boolean showAllCombinations) {
-		return getStringFromVisualMatrix(convertSparseMatrixToVisualMatrix(sparsePosition, width, height, showAllCombinations));
+	public String getVisualMatrix(List<List<Integer>> sparsePosition, int width, int height, boolean showAllCombinations, boolean randomOutput) {
+		List<String[][]> fullOutput = convertSparseMatrixToVisualMatrix(sparsePosition, width, height);
+		String[][] finalPlacement = null;
+		int highestPlacementCount = 0;
+
+		if (randomOutput) {
+			finalPlacement = fullOutput.get(RandomUtils.nextInt(0, fullOutput.size()));
+			fullOutput = new ArrayList<>();
+			fullOutput.add(finalPlacement);
+		}
+
+		if (!showAllCombinations) {
+			for (String[][] strings : fullOutput) {
+				ArrayList<String> listOfPlacements = new ArrayList<>(Arrays.asList(StringUtils.split(Arrays.deepToString(transposeMatrix(strings)), ",")));
+				listOfPlacements.removeAll(Collections.singleton(null));
+				listOfPlacements.removeAll(Collections.singleton(" "));
+
+				if (highestPlacementCount < listOfPlacements.size()) {
+					highestPlacementCount = listOfPlacements.size();
+					finalPlacement = strings;
+				}
+			}
+			fullOutput = new ArrayList<>();
+			fullOutput.add(finalPlacement);
+		}
+
+		return getStringFromVisualMatrix(fullOutput);
 	}
 
 	/**
@@ -45,9 +72,10 @@ public class SparseMatrixToVisualGenerator {
 	 * @param width
 	 * @param height
 	 * @param showAllCombinations 
+	 * @param randomOutput 
 	 * @return
 	 */
-	public List<String[][]> convertSparseMatrixToVisualMatrix(List<List<Integer>> sparsePosition, int width, int height, boolean showAllCombinations) {
+	public List<String[][]> convertSparseMatrixToVisualMatrix(List<List<Integer>> sparsePosition, int width, int height) {
 		Container container = new Container(width, height);
 		PentominoBaseModel baseModel = new PentominoBaseModel();
 		Map<Integer, String> pentominoAlphabetPositionMap = baseModel.getPentominoAlphabetPositionMap();
@@ -73,6 +101,7 @@ public class SparseMatrixToVisualGenerator {
 				}
 				polynomioChar = StringUtils.EMPTY;
 			}
+
 			listOfPossibleOutputs.add(transposeMatrix(containerVisual));
 		}
 		return listOfPossibleOutputs;

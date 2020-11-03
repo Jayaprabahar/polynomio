@@ -45,8 +45,9 @@ public class PolynomioController {
 	@GetMapping("/fastPlacementAlgorithm")
 	/* @GetMapping("/fastPlacementAlgorithm/{polynomioSize}") */
 	public String getSolutionFastPlacementAlgorithm(@RequestParam("boxWidth") int containerWidth, @RequestParam("boxHeight") int containerHeight,
-			@RequestParam(name = "showAllCombinations", defaultValue = "false", required = false) boolean showAllCombinations) {
-		return fastPlacementAlgorithm.getFastPlacementSolution(containerWidth, containerHeight, showAllCombinations);
+			@RequestParam(name = "showAllCombinations", defaultValue = "false", required = false) boolean showAllCombinations,
+			@RequestParam(name = "showRandom", defaultValue = "false", required = false) boolean randomOutput) {
+		return fastPlacementAlgorithm.getFastPlacementSolution(containerWidth, containerHeight, showAllCombinations, randomOutput);
 	}
 
 }

@@ -52,9 +52,10 @@ public class FastPlacementAlgorithm {
 	 * @param containerWidth
 	 * @param containerHeight
 	 * @param showAllCombinations
+	 * @param randomOutput 
 	 * @return
 	 */
-	public String getFastPlacementSolution(int containerWidth, int containerHeight, boolean showAllCombinations) {
+	public String getFastPlacementSolution(int containerWidth, int containerHeight, boolean showAllCombinations, boolean randomOutput) {
 		int[][] polynomioAlphabetMatrix = sparseMatrixGenerator.createPolynomioMatrix(containerWidth, containerHeight);
 		List<List<String>> listOfPolynomioPositions = new ArrayList<>();
 		List<List<Integer>> results = new ArrayList<>();
@@ -68,7 +69,7 @@ public class FastPlacementAlgorithm {
 			log.debug("Solutions {}", results);
 		}
 
-		return sparseMatrixToVisualGenerator.getVisualMatrix(results, containerWidth, containerHeight, showAllCombinations);
+		return sparseMatrixToVisualGenerator.getVisualMatrix(results, containerWidth, containerHeight, showAllCombinations, randomOutput);
 	}
 
 	/**
