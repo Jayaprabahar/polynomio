@@ -33,13 +33,16 @@ import com.jayaprabahar.algorithms.polynomio.model.pentomino.PentominoBaseModel;
 @Component
 public class SparseMatrixToVisualGenerator {
 
+	public static final String SPACE_FILLING_CHAR = "-";
+
 	/**
+	 * @param allowedPolynomio 
 	 * @param randomOutput 
 	 * @return 
 	 * 
 	 */
-	public String getVisualMatrix(List<List<Integer>> sparsePosition, int width, int height, boolean showAllCombinations, boolean randomOutput) {
-		List<String[][]> fullOutput = convertSparseMatrixToVisualMatrix(sparsePosition, width, height);
+	public String getVisualMatrix(List<List<Integer>> sparsePosition, int width, int height, String allowedPolynomio, boolean showAllCombinations, boolean randomOutput) {
+		List<String[][]> fullOutput = convertSparseMatrixToVisualMatrix(sparsePosition, width, height, allowedPolynomio);
 		String[][] finalPlacement = null;
 		int highestPlacementCount = 0;
 
@@ -71,15 +74,16 @@ public class SparseMatrixToVisualGenerator {
 	 * @param sparsePosition
 	 * @param width
 	 * @param height
+	 * @param allowedPolynomio 
 	 * @param showAllCombinations 
 	 * @param randomOutput 
 	 * @return
 	 */
-	public List<String[][]> convertSparseMatrixToVisualMatrix(List<List<Integer>> sparsePosition, int width, int height) {
+	public List<String[][]> convertSparseMatrixToVisualMatrix(List<List<Integer>> sparsePosition, int width, int height, String allowedPolynomio) {
 		Container container = new Container(width, height);
 		PentominoBaseModel baseModel = new PentominoBaseModel();
-		Map<Integer, String> pentominoAlphabetPositionMap = baseModel.getPentominoAlphabetPositionMap();
-		String polynomioChar = StringUtils.EMPTY;
+		Map<Integer, String> pentominoAlphabetPositionMap = baseModel.getPentominoAlphabetPositionMap(allowedPolynomio);
+		String polynomioChar = SPACE_FILLING_CHAR;
 		Coordinates coordinates = null;
 
 		List<String[][]> listOfPossibleOutputs = new ArrayList<>();
@@ -87,19 +91,22 @@ public class SparseMatrixToVisualGenerator {
 		for (List<Integer> eachCombination : sparsePosition) {
 			String[][] containerVisual = new String[width][height];
 			for (String[] strings : containerVisual) {
-				Arrays.fill(strings, StringUtils.EMPTY);
+				Arrays.fill(strings, SPACE_FILLING_CHAR);
 			}
 
-			for (List<Integer> intList : ListUtils.partition(eachCombination, width)) {
+			for (List<Integer> intList : ListUtils.partition(eachCombination, 6)) {
 				for (int j = 0; j < intList.size(); j++) {
 					if (j == 0) {
 						polynomioChar = pentominoAlphabetPositionMap.get(intList.get(j));
 					} else {
-						coordinates = container.getCoordinatesBasedOnPosition(intList.get(j) - baseModel.getPentominoBaseModels().size());
+						coordinates = container.getCoordinatesBasedOnPosition(intList.get(j) - baseModel.getPentominoBaseModels(allowedPolynomio).size());
+						if(coordinates.getXAxis() < 0 || coordinates.getXAxis() < 0) {
+							System.out.println();
+						}
 						containerVisual[coordinates.getXAxis()][coordinates.getYAxis()] = polynomioChar;
 					}
 				}
-				polynomioChar = StringUtils.EMPTY;
+				polynomioChar = SPACE_FILLING_CHAR;
 			}
 
 			listOfPossibleOutputs.add(transposeMatrix(containerVisual));
@@ -123,7 +130,7 @@ public class SparseMatrixToVisualGenerator {
 		String[][] outputMatrix = new String[inputMatrix[0].length][inputMatrix.length];
 
 		for (String[] strings : outputMatrix) {
-			Arrays.fill(strings, StringUtils.EMPTY);
+			Arrays.fill(strings, SPACE_FILLING_CHAR);
 		}
 
 		for (int i = 0; i < inputMatrix.length; i++) {

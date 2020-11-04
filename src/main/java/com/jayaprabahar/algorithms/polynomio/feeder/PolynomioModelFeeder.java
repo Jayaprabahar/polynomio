@@ -43,12 +43,13 @@ public class PolynomioModelFeeder {
 	private Predicate<? super Coordinates> inTheBoxPredicate = e -> e.getXAxis() >= 0 && e.getXAxis() < width && e.getYAxis() >= 0 && e.getYAxis() < height;
 
 	/**
+	 * @param allowedPolynomio 
 	 * 
 	 */
-	public PolynomioModelFeeder(int width, int height) {
+	public PolynomioModelFeeder(int width, int height, String allowedPolynomio) {
 		this.width = width;
 		this.height = height;
-		this.polynomioList = new PentominoBaseModel().getPentominoBaseModels();
+		this.polynomioList = new PentominoBaseModel().getPentominoBaseModels(allowedPolynomio);
 
 		generateAllPolynomioCombinations();
 	}

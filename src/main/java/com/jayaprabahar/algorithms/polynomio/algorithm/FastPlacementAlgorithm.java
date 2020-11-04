@@ -43,33 +43,34 @@ public class FastPlacementAlgorithm {
 	 * 
 	 */
 	@Autowired
-	public FastPlacementAlgorithm(SparseMatrixGenerator sparseMatrixGenerator, SparseMatrixToVisualGenerator SparseMatrixToVisualGenerator) {
+	public FastPlacementAlgorithm(SparseMatrixGenerator sparseMatrixGenerator, SparseMatrixToVisualGenerator sparseMatrixToVisualGenerator) {
 		this.sparseMatrixGenerator = sparseMatrixGenerator;
-		this.sparseMatrixToVisualGenerator = SparseMatrixToVisualGenerator;
+		this.sparseMatrixToVisualGenerator = sparseMatrixToVisualGenerator;
 	}
 
 	/**
 	 * @param containerWidth
 	 * @param containerHeight
+	 * @param basePolynomioTobeIncluded 
 	 * @param showAllCombinations
 	 * @param randomOutput 
 	 * @return
 	 */
-	public String getFastPlacementSolution(int containerWidth, int containerHeight, boolean showAllCombinations, boolean randomOutput) {
-		int[][] polynomioAlphabetMatrix = sparseMatrixGenerator.createPolynomioMatrix(containerWidth, containerHeight);
+	public String getFastPlacementSolution(int containerWidth, int containerHeight, String allowedPolynomio, boolean showAllCombinations, boolean randomOutput) {
+		int[][] sparseMatrix = sparseMatrixGenerator.createPolynomioMatrix(containerWidth, containerHeight, allowedPolynomio);
 		List<List<String>> listOfPolynomioPositions = new ArrayList<>();
 		List<List<Integer>> results = new ArrayList<>();
 
-		for (int[] perRowEntry : polynomioAlphabetMatrix) {
+		for (int[] perRowEntry : sparseMatrix) {
 			listOfPolynomioPositions.add(Arrays.asList(StringUtils.strip(ArrayUtils.indexesOf(perRowEntry, 1).toString(), "{}").split(",")));
 		}
 
 		for (int i = 0; i < listOfPolynomioPositions.size(); i++) {
 			results.add(findCovering(listOfPolynomioPositions, listOfPolynomioPositions.get(i)));
-			log.debug("Solutions {}", results);
 		}
+		log.info("Solutions {}", results);
 
-		return sparseMatrixToVisualGenerator.getVisualMatrix(results, containerWidth, containerHeight, showAllCombinations, randomOutput);
+		return sparseMatrixToVisualGenerator.getVisualMatrix(results, containerWidth, containerHeight, allowedPolynomio, showAllCombinations, randomOutput);
 	}
 
 	/**

@@ -4,9 +4,7 @@
 package com.jayaprabahar.algorithms.polynomio.algorithm.sparse;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -33,12 +31,13 @@ import lombok.Data;
 public class SparseMatrixGenerator {
 
 	/**
+	 * @param basePolynomioTobeIncluded 
 	 * @param containerHeight 
 	 * @param containerWidth 
 	 * @return
 	 */
-	public int[][] createPolynomioMatrix(int width, int height) {
-		PolynomioModelFeeder feeder = new PolynomioModelFeeder(width, height);
+	public int[][] createPolynomioMatrix(int width, int height, String allowedPolynomio) {
+		PolynomioModelFeeder feeder = new PolynomioModelFeeder(width, height, allowedPolynomio);
 		Container container = new Container(width, height, feeder.getPolynomioList().size(), feeder.getCoordinatesCount());
 		int[][] containerPlacements = container.getContainerPlacements();
 
@@ -61,8 +60,8 @@ public class SparseMatrixGenerator {
 	/**
 	 * @return
 	 */
-	public String[][] createPolynomioAlphabetMatrix(int width, int height) {
-		PolynomioModelFeeder feeder = new PolynomioModelFeeder(width, height);
+	public String[][] createPolynomioAlphabetMatrix(int width, int height, String allowedPolynomio) {
+		PolynomioModelFeeder feeder = new PolynomioModelFeeder(width, height, allowedPolynomio);
 		AlphabetContainer container = new AlphabetContainer(width, height, feeder.getCoordinatesCount());
 		String[][] containerPlacements = prefillArray(container.getContainerPlacements(), StringUtils.EMPTY);
 
@@ -75,13 +74,6 @@ public class SparseMatrixGenerator {
 			});
 		});
 		return containerPlacements;
-	}
-
-	/**
-	 * @return
-	 */
-	public List<List<String>> createPolynomioAlphabetMatrixList(int width, int height) {
-		return Arrays.asList(createPolynomioAlphabetMatrix(width, height)).stream().map(Arrays::asList).collect(Collectors.toList());
 	}
 
 	/**

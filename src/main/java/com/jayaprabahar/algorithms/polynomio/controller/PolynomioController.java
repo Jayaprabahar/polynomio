@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jayaprabahar.algorithms.polynomio.algorithm.FastPlacementAlgorithm;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * <p> Project : polynomio </p>
  * <p> Title : PolynomioController.java </p>
@@ -24,6 +26,7 @@ import com.jayaprabahar.algorithms.polynomio.algorithm.FastPlacementAlgorithm;
  */
 @RestController
 @RequestMapping("/polynomios")
+@Slf4j
 public class PolynomioController {
 
 	FastPlacementAlgorithm fastPlacementAlgorithm;
@@ -45,9 +48,12 @@ public class PolynomioController {
 	@GetMapping("/fastPlacementAlgorithm")
 	/* @GetMapping("/fastPlacementAlgorithm/{polynomioSize}") */
 	public String getSolutionFastPlacementAlgorithm(@RequestParam("boxWidth") int containerWidth, @RequestParam("boxHeight") int containerHeight,
+			@RequestParam(name = "allowedPolynomio", defaultValue = "F-I-L-N-P-T-U-V-W-X-Y-Z-FF-FL-FN-FP-FY-FZ", required = false) String allowedPolynomio,
 			@RequestParam(name = "showAllCombinations", defaultValue = "false", required = false) boolean showAllCombinations,
-			@RequestParam(name = "showRandom", defaultValue = "false", required = false) boolean randomOutput) {
-		return fastPlacementAlgorithm.getFastPlacementSolution(containerWidth, containerHeight, showAllCombinations, randomOutput);
+			@RequestParam(name = "showRandom", defaultValue = "false", required = false) boolean showRandom) {
+		log.info("API Call made with containerWidth {}, containerHeight {}, basePolynomioTobeIncluded {}, showAllCombinations {}, randomOutput {}", containerWidth, containerHeight, allowedPolynomio,
+				showAllCombinations, showRandom);
+		return fastPlacementAlgorithm.getFastPlacementSolution(containerWidth, containerHeight, allowedPolynomio, showAllCombinations, showRandom);
 	}
 
 }
