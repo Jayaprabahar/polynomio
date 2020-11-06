@@ -4,19 +4,14 @@
 package com.jayaprabahar.algorithms.polynomio.algorithm;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jayaprabahar.algorithms.polynomio.algorithm.sparse.SparseMatrixGenerator;
+import com.jayaprabahar.algorithms.polynomio.algorithm.sparse.SparseMatrixSupporter;
 import com.jayaprabahar.algorithms.polynomio.algorithm.sparse.SparseMatrixToVisualGenerator;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * <p> Project : polynomio </p>
  * <p> Title : FastPlacementAlgorithm.java </p>
- * <p> Description: A simple algorithm that tries to iteratively fill the sparse matrix entries in sequential way</p>
+ * <p> Description: A simple algorithm that tries to iteratively fill the sparse matrix entries in sequential way, wherever the space is filled at the first sight</p>
  * <p> Created: Nov 3, 2020 </p>
  * 
  * @since 1.0.0
@@ -34,17 +29,17 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
-public class FastPlacementAlgorithm {
+public class FastPlacementAlgorithm implements Algorithm {
 
-	private SparseMatrixGenerator sparseMatrixGenerator;
+	private SparseMatrixSupporter sparseMatrixSupporter;
 	private SparseMatrixToVisualGenerator sparseMatrixToVisualGenerator;
 
 	/**
 	 * 
 	 */
 	@Autowired
-	public FastPlacementAlgorithm(SparseMatrixGenerator sparseMatrixGenerator, SparseMatrixToVisualGenerator sparseMatrixToVisualGenerator) {
-		this.sparseMatrixGenerator = sparseMatrixGenerator;
+	public FastPlacementAlgorithm(SparseMatrixSupporter sparseMatrixSupporter, SparseMatrixToVisualGenerator sparseMatrixToVisualGenerator) {
+		this.sparseMatrixSupporter = sparseMatrixSupporter;
 		this.sparseMatrixToVisualGenerator = sparseMatrixToVisualGenerator;
 	}
 
@@ -56,14 +51,11 @@ public class FastPlacementAlgorithm {
 	 * @param randomOutput 
 	 * @return
 	 */
-	public String getFastPlacementSolution(int containerWidth, int containerHeight, String allowedPolynomio, boolean showAllCombinations, boolean randomOutput) {
-		int[][] sparseMatrix = sparseMatrixGenerator.createPolynomioMatrix(containerWidth, containerHeight, allowedPolynomio);
-		List<List<String>> listOfPolynomioPositions = new ArrayList<>();
+	@Override
+	public String getSolution(int containerWidth, int containerHeight, String allowedPolynomio, boolean showAllCombinations, boolean randomOutput) {
+		List<List<Integer>> listOfPolynomioPositions = sparseMatrixSupporter.createPolynomioCombinationList(containerWidth, containerHeight, allowedPolynomio);
 		List<List<Integer>> results = new ArrayList<>();
-
-		for (int[] perRowEntry : sparseMatrix) {
-			listOfPolynomioPositions.add(Arrays.asList(StringUtils.strip(ArrayUtils.indexesOf(perRowEntry, 1).toString(), "{}").split(",")));
-		}
+		log.info("Poly Solutions {}", listOfPolynomioPositions);
 
 		for (int i = 0; i < listOfPolynomioPositions.size(); i++) {
 			results.add(findCovering(listOfPolynomioPositions, listOfPolynomioPositions.get(i)));
@@ -78,13 +70,13 @@ public class FastPlacementAlgorithm {
 	 * @return 
 	 * 
 	 */
-	private List<Integer> findCovering(List<List<String>> listOfPolynomioPositions, List<String> listOfInsertedPositions) {
+	private List<Integer> findCovering(List<List<Integer>> listOfPolynomioPositions, List<Integer> listOfInsertedPositions) {
 		for (int i = 0; i < listOfPolynomioPositions.size(); i++) {
 			if (CollectionUtils.isEmpty(ListUtils.intersection(listOfInsertedPositions, listOfPolynomioPositions.get(i)))) {
 				listOfInsertedPositions = ListUtils.union(listOfInsertedPositions, listOfPolynomioPositions.get(i));
 			}
 		}
-		return listOfInsertedPositions.stream().map(e -> NumberUtils.createInteger(e.trim())).collect(Collectors.toList());
+		return listOfInsertedPositions;
 	}
 
 }

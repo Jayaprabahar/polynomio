@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import com.jayaprabahar.algorithms.polynomio.model.CoordinatesSet;
 import com.jayaprabahar.algorithms.polynomio.model.Polynomio;
+import com.jayaprabahar.algorithms.polynomio.model.pentomino.PentominoBaseModel;
 
 /**
  * <p> Project : polynomio </p>
@@ -29,19 +30,19 @@ class PolynomioModelFeederTest {
 
 	@Test
 	void testPentominoModelFeeder() {
-		PolynomioModelFeeder feeder = new PolynomioModelFeeder(6, 10, "F-I-L-N-P-T-U-V-W-X-Y-Z-FF-FL-FN-FP-FY-FZ");
-		assertEquals(18, feeder.getPolynomioList().size());
+		PolynomioModelFeeder feeder = new PolynomioModelFeeder(6, 10, PentominoBaseModel.PENTOMINO_APHABET);
+		assertEquals(12, feeder.getPolynomioList().size());
 
 		// Tests there is no duplicates
 		List<CoordinatesSet> totalCoordinates = feeder.getPolynomioList().stream().map(Polynomio::getCoordinatesSets).flatMap(List::stream).collect(Collectors.toList());
 		assertEquals(totalCoordinates.size(), totalCoordinates.stream().distinct().count());
 
-		assertEquals(586, totalCoordinates.size());
+		assertEquals(389, totalCoordinates.size());
 		assertEquals(32, feeder.getCoordinatesSetForPolynomioLetter("F").size());
 		assertEquals(20, feeder.getCoordinatesSetForPolynomioLetter("I").size());
-		assertEquals(27, feeder.getCoordinatesSetForPolynomioLetter("L").size());
+		assertEquals(35, feeder.getCoordinatesSetForPolynomioLetter("L").size());
 		assertEquals(35, feeder.getCoordinatesSetForPolynomioLetter("N").size());
-		assertEquals(40, feeder.getCoordinatesSetForPolynomioLetter("P").size());
+		assertEquals(36, feeder.getCoordinatesSetForPolynomioLetter("P").size());
 		assertEquals(32, feeder.getCoordinatesSetForPolynomioLetter("T").size());
 		assertEquals(36, feeder.getCoordinatesSetForPolynomioLetter("U").size());
 		assertEquals(32, feeder.getCoordinatesSetForPolynomioLetter("V").size());
@@ -50,12 +51,12 @@ class PolynomioModelFeederTest {
 		assertEquals(35, feeder.getCoordinatesSetForPolynomioLetter("Y").size());
 		assertEquals(32, feeder.getCoordinatesSetForPolynomioLetter("Z").size());
 		
-		assertEquals(32, feeder.getCoordinatesSetForPolynomioLetter("FF").size());
-		assertEquals(27, feeder.getCoordinatesSetForPolynomioLetter("FL").size());
-		assertEquals(35, feeder.getCoordinatesSetForPolynomioLetter("FN").size());
-		assertEquals(40, feeder.getCoordinatesSetForPolynomioLetter("FP").size());
-		assertEquals(35, feeder.getCoordinatesSetForPolynomioLetter("FY").size());
-		assertEquals(32, feeder.getCoordinatesSetForPolynomioLetter("FZ").size());
+//		assertEquals(32, feeder.getCoordinatesSetForPolynomioLetter("FF").size());
+//		assertEquals(27, feeder.getCoordinatesSetForPolynomioLetter("FL").size());
+//		assertEquals(35, feeder.getCoordinatesSetForPolynomioLetter("FN").size());
+//		assertEquals(40, feeder.getCoordinatesSetForPolynomioLetter("FP").size());
+//		assertEquals(35, feeder.getCoordinatesSetForPolynomioLetter("FY").size());
+//		assertEquals(32, feeder.getCoordinatesSetForPolynomioLetter("FZ").size());
 		
 	}
 

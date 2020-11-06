@@ -97,12 +97,9 @@ public class SparseMatrixToVisualGenerator {
 			for (List<Integer> intList : ListUtils.partition(eachCombination, 6)) {
 				for (int j = 0; j < intList.size(); j++) {
 					if (j == 0) {
-						polynomioChar = pentominoAlphabetPositionMap.get(intList.get(j));
+						polynomioChar = StringUtils.defaultString(pentominoAlphabetPositionMap.get(intList.get(j)), "*");
 					} else {
 						coordinates = container.getCoordinatesBasedOnPosition(intList.get(j) - baseModel.getPentominoBaseModels(allowedPolynomio).size());
-						if(coordinates.getXAxis() < 0 || coordinates.getXAxis() < 0) {
-							System.out.println();
-						}
 						containerVisual[coordinates.getXAxis()][coordinates.getYAxis()] = polynomioChar;
 					}
 				}
