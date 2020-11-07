@@ -56,7 +56,7 @@ public class PolynomioController {
 	public String getSolutionFastPlacementAlgorithm(@RequestParam("boxWidth") int containerWidth, @RequestParam("boxHeight") int containerHeight,
 			@RequestParam(name = "allowedPolynomio", defaultValue = PentominoBaseModel.PENTOMINO_APHABET, required = false) String allowedPolynomio,
 			@RequestParam(name = "showAllCombinations", defaultValue = "false", required = false) boolean showAllCombinations,
-			@RequestParam(name = "showRandom", defaultValue = "false", required = false) boolean showRandom) {
+			@RequestParam(name = "showRandom", defaultValue = "true", required = false) boolean showRandom) {
 		log.info("API Call made with containerWidth {}, containerHeight {}, basePolynomioTobeIncluded {}, showAllCombinations {}, randomOutput {}", containerWidth, containerHeight, allowedPolynomio,
 				showAllCombinations, showRandom);
 		return fastPlacementAlgorithm.getSolution(containerWidth, containerHeight, allowedPolynomio, showAllCombinations, showRandom);
@@ -66,7 +66,7 @@ public class PolynomioController {
 	public String getSolutionBackTrackingAlgorithm(@RequestParam("boxWidth") int containerWidth, @RequestParam("boxHeight") int containerHeight,
 			@RequestParam(name = "allowedPolynomio", defaultValue = PentominoBaseModel.PENTOMINO_APHABET, required = false) String allowedPolynomio,
 			@RequestParam(name = "showAllCombinations", defaultValue = "false", required = false) boolean showAllCombinations,
-			@RequestParam(name = "showRandom", defaultValue = "false", required = false) boolean showRandom) {
+			@RequestParam(name = "showRandom", defaultValue = "true", required = false) boolean showRandom) {
 		log.info("API Call made with containerWidth {}, containerHeight {}, basePolynomioTobeIncluded {}, showAllCombinations {}, randomOutput {}", containerWidth, containerHeight, allowedPolynomio,
 				showAllCombinations, showRandom);
 		return backTrackingAlgorithm.getSolution(containerWidth, containerHeight, allowedPolynomio, showAllCombinations, showRandom);

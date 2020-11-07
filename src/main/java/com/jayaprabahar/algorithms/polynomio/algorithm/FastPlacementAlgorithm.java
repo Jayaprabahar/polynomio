@@ -55,7 +55,6 @@ public class FastPlacementAlgorithm implements Algorithm {
 	public String getSolution(int containerWidth, int containerHeight, String allowedPolynomio, boolean showAllCombinations, boolean randomOutput) {
 		List<List<Integer>> listOfPolynomioPositions = sparseMatrixSupporter.createPolynomioCombinationList(containerWidth, containerHeight, allowedPolynomio);
 		List<List<Integer>> results = new ArrayList<>();
-		log.info("Poly Solutions {}", listOfPolynomioPositions);
 
 		for (int i = 0; i < listOfPolynomioPositions.size(); i++) {
 			results.add(findCovering(listOfPolynomioPositions, listOfPolynomioPositions.get(i)));

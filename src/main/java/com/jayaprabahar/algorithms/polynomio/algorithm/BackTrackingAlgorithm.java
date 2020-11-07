@@ -59,9 +59,9 @@ public class BackTrackingAlgorithm implements Algorithm {
 	@Override
 	public String getSolution(int containerWidth, int containerHeight, String allowedPolynomio, boolean showAllCombinations, boolean randomOutput) {
 		Map<Integer, List<List<Integer>>> polynomioCombinations = sparseMatrixSupporter.getPolynomioCombinationsByAlphabets(containerWidth, containerHeight, allowedPolynomio);
-
 		List<List<Integer>> results = new ArrayList<>();
-
+		List<Integer> output = new ArrayList<Integer>();
+		List<List<Integer>> finalOutput = new ArrayList<>();
 		int passedIndex = 0;
 
 		for (int level = 0; level < polynomioCombinations.size(); level++) {
@@ -69,21 +69,28 @@ public class BackTrackingAlgorithm implements Algorithm {
 			int indexOfFirstSuccess = findCovering(polynomioCombinations.get(level), results, level, passedIndex);
 			if (indexOfFirstSuccess < 0) {
 				--level;
-				results.remove(level);
-				passedIndex = levelPosMap.get(level);
-				levelPosMap.remove(level);
-				--level;
+				if (level >= 0) {
+					results.remove(level);
+					passedIndex = levelPosMap.get(level);
+					levelPosMap.remove(level);
+					--level;
+				}
 			} else {
 				passedIndex = 0;
 			}
 			if (levelPosMap.size() > 10) {
-				System.out.println(levelPosMap);
+				break;
 			}
 		}
+		for (int i = 0; i < results.size(); i++) {
+			output.add(i);
+			output.addAll(results.get(i));
+		}
+		finalOutput.add(output);
 
-		log.info("Solutions {}" + System.lineSeparator(), results);
+		log.info("Solutions {}" + System.lineSeparator(), finalOutput);
 
-		return sparseMatrixToVisualGenerator.getVisualMatrix(results, containerWidth, containerHeight, allowedPolynomio, showAllCombinations, randomOutput);
+		return sparseMatrixToVisualGenerator.getVisualMatrix(finalOutput, containerWidth, containerHeight, allowedPolynomio, showAllCombinations, randomOutput);
 	}
 
 	private int findCovering(List<List<Integer>> listOfSinglePositions, List<List<Integer>> results, int level, int previousIndex) {
