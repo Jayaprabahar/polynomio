@@ -1,0 +1,170 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/polynomios/fastPlacementAlgorithm": {
+      "get": {
+        "tags": [
+          "polynomio-controller"
+        ],
+        "operationId": "getSolutionFastPlacementAlgorithm",
+        "parameters": [
+          {
+            "name": "boxWidth",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "boxHeight",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "allowedPolynomio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "F-I-L-N-P-T-U-V-W-X-Y-Z"
+            }
+          },
+          {
+            "name": "showAllCombinations",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "showRandom",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default response",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/polynomios/backTrackingAlgorithm": {
+      "get": {
+        "tags": [
+          "polynomio-controller"
+        ],
+        "operationId": "getSolutionBackTrackingAlgorithm",
+        "parameters": [
+          {
+            "name": "boxWidth",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "boxHeight",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "allowedPolynomio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "F-I-L-N-P-T-U-V-W-X-Y-Z"
+            }
+          },
+          {
+            "name": "showAllCombinations",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "showRandom",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default response",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/polynomios/dlxAlgorithm": {
+      "get": {
+        "tags": [
+          "polynomio-controller"
+        ],
+        "operationId": "getSolutionDlxAlgorithm",
+        "responses": {
+          "200": {
+            "description": "default response",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {}
+}

@@ -42,7 +42,7 @@ public class TimingAspect {
 
 		Object result = joinPoint.proceed();
 
-		log.info("Time taken for the calculation {}", startTime.until(LocalDateTime.now(), ChronoUnit.MILLIS));
+		log.info("Time taken for the calculation {} in milliseconds", startTime.until(LocalDateTime.now(), ChronoUnit.MILLIS));
 
 		return result;
 	}

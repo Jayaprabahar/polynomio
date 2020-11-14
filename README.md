@@ -22,10 +22,53 @@ It can be tested via browser or PostMan tool
 4. Java libraries such as commons-math3
 4. And few other. Please refer pom.xml
 
-## Technical Stack
-
 Run the SpringBoot application (main class "PolynomioApplication.java")
 The solution is running as an API.
+
+
+# OpenApi 3 Specification
+
+This application automatically generated the OpenApi 3 Specification at the "http://localhost:8080/api-docs".
+Please put them in the swagger editor to play with it.
+
+# Dockers
+
+## Run on local docker engine
+ 
+A simple working dockerfile implementation is added as part of this source code. All you need is to run your local Docker engine (Eg:- docker desktop) and execute the following commands sequentially.
+*	docker build -t polynomio .
+*	docker run -p 8080:8080 polynomio
+
+If you feel it is working smooth, then
+*	docker tag polynomio jayaprabahar/polynomio:latest
+*	docker push jayaprabahar/polynomio:latest
+
+## 	Pull image from my/your Dockerhub
+
+I already pushed the image into my dockerhub. Its a public one. You can pull from three or you can pull from your own docker registry (acr/dockerhub), and run it
+*	docker pull jayaprabahar/polynomio:latest
+*	docker run -p 8080:8080 jayaprabahar/polynomio
+
+## 	Push image into your Dockerhub
+
+Incase if you want to push into your own dockerhub registry, follow the below comments
+
+*	docker tag polynomio jayaprabahar/polynomio:latest
+*	docker push jayaprabahar/polynomio:latest
+The push refers to repository [docker.io/jayaprabahar/polynomio]
+latest: digest: sha256:6847213ec5e98ce26c0f5247f44db356147a2e48e38bff4b9c8619d482d625bf size: 1166
+
+# Kubernetes & Cloud
+
+I added k8s configuration for deployment & service. 
+
+This configuration will work seemlessly in Azure, if you already tagged the image with you AzureContainerRegistry
+*	az acr list --resource-group VotingAppResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
+*	docker tag polynomio <Your_ACR_Login_server>/polynomio:latest
+
+Example
+*	docker tag polynomio jpvotingappacr.azurecr.io/polynomio:latest
+
 
 ## Usage
 Just hit the URL with the following value
@@ -65,12 +108,12 @@ You'll see the output in this format. (If you are using browser, then the output
 * Fast Placement Algorithm (Whichever is available first, those will be placed)
 
 	--------------------
- 	- F FZ FZ N - P - - FP
- 	F F - FZ N N P P FP FP
- 	- F F FZ FZ N P P FP FP
- 	I I I I I N T U U U
- 	L L L L - - T U - U
- 	- - - L - T T T - -
+	- F FZ FZ N - P - - FP
+	F F - FZ N N P P FP FP
+	- F F FZ FZ N P P FP FP
+	I I I I I N T U U U
+	L L L L - - T U - U
+	- - - L - T T T - -
 
 	http://localhost:8080/polynomios/fastPlacementAlgorithm?boxWidth=6&boxHeight=10&showRandom=true
 	
